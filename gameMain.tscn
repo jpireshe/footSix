@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct23rskwtw0p7"]
+
+[ext_resource type="Script" path="res://game_main.gd" id="1_5h1dw"]
+[ext_resource type="Texture2D" uid="uid://dbumojj861iok" path="res://FieldTexture.jpg" id="2_rbkn6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_462js"]
+size = Vector3(100, 0.1, 60)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhou8"]
+albedo_texture = ExtResource("2_rbkn6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_inbjw"]
+albedo_color = Color(0, 1, 0, 1)
+
+[node name="Game" type="Node3D" node_paths=PackedStringArray("MainCamera")]
+script = ExtResource("1_5h1dw")
+MainCamera = NodePath("MainCamera")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 2.46291e-05, -0.0004025, 0.000340644, 0.482583, 0.87585, 0.000215811, -0.87585, 0.482583, 12.0576, 36.5067, 14.239)
+light_energy = 3.0
+sky_mode = 1
+
+[node name="Field" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000274658, 1.52588e-05, -0.269379)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Field"]
+shape = SubResource("BoxShape3D_462js")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Field"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+material_override = SubResource("StandardMaterial3D_vhou8")
+size = Vector3(50, 0.1, 30)
+material = SubResource("StandardMaterial3D_inbjw")
+
+[node name="MainCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.517459, 0.855708, 0, -0.855708, 0.517459, 0, 16.3448, 16.0777)
+fov = 90.0

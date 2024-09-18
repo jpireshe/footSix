@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://do8uvvk4fqdh6"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_prrrd"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_03mex"]
+height = 1.8
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." node_paths=PackedStringArray("PlayerCamera", "UI")]
+script = ExtResource("1_prrrd")
+PlayerCamera = NodePath("Camera3D")
+UI = NodePath("UI")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_03mex")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CharacterBody3D"]
+transform = Transform3D(1.04777, 0, 0, 0, 1.81279, 0, 0, 0, 1.06714, 0, 0, 0)
+rings = 12
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.911224, 0.411912, 0, -0.411912, 0.911224, 0, 2.24576, 4.05737)
+
+[node name="UI" type="Control" parent="CharacterBody3D"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 34.0
+offset_top = 22.0
+offset_right = 74.0
+offset_bottom = 62.0
+
+[node name="QuitButton" type="Button" parent="CharacterBody3D/UI"]
+layout_mode = 0
+offset_right = 133.0
+offset_bottom = 70.0
+text = "Quit"
+
+[connection signal="pressed" from="CharacterBody3D/UI/QuitButton" to="CharacterBody3D" method="_On_QuitButton_Pressed"]

@@ -1,0 +1,139 @@
+[gd_scene load_steps=2 format=3 uid="uid://2bi1svqhgb4s"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_x5oeb"]
+
+[node name="UI" type="Control" node_paths=PackedStringArray("Select", "Placings", "Move", "Turn", "SelectMoveButton", "SelectRestingMoves", "TurnRestingMoves", "MoveRestingMoves", "RestingPlacings", "SelectPlayerMoves", "MovePlayerMoves")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x5oeb")
+Select = NodePath("Select")
+Placings = NodePath("Placings")
+Move = NodePath("Move")
+Turn = NodePath("Turn")
+SelectMoveButton = NodePath("Select/Move")
+SelectRestingMoves = NodePath("Select/RestingMoves")
+TurnRestingMoves = NodePath("Turn/RestingMoves")
+MoveRestingMoves = NodePath("Move/RestingMoves")
+RestingPlacings = NodePath("Placings/RestingPlacings")
+SelectPlayerMoves = NodePath("Select/PlayerMoves")
+MovePlayerMoves = NodePath("Move/PlayerMoves")
+
+[node name="Turn" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RestingMoves" type="RichTextLabel" parent="Turn"]
+layout_mode = 0
+offset_left = 868.0
+offset_top = 18.0
+offset_right = 1111.0
+offset_bottom = 58.0
+text = "Moves you can still do: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="Select" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RestingMoves" type="RichTextLabel" parent="Select"]
+layout_mode = 0
+offset_left = 914.0
+offset_top = 18.0
+offset_right = 1157.0
+offset_bottom = 58.0
+text = "Moves you can still do: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="PlayerMoves" type="RichTextLabel" parent="Select"]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 42.0
+offset_right = 1137.0
+offset_bottom = 82.0
+text = "Moves player can still do: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="Quit" type="Button" parent="Select"]
+custom_minimum_size = Vector2(150, 90)
+layout_mode = 0
+offset_left = 21.0
+offset_top = 19.0
+offset_right = 63.0
+offset_bottom = 50.0
+text = "Quit"
+
+[node name="Move" type="Button" parent="Select"]
+custom_minimum_size = Vector2(150, 90)
+layout_mode = 0
+offset_left = 21.0
+offset_top = 131.0
+offset_right = 171.0
+offset_bottom = 221.0
+text = "Move"
+
+[node name="Move" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RestingMoves" type="RichTextLabel" parent="Move"]
+layout_mode = 0
+offset_left = 914.0
+offset_top = 18.0
+offset_right = 1157.0
+offset_bottom = 58.0
+text = "Moves you can still do: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="PlayerMoves" type="RichTextLabel" parent="Move"]
+layout_mode = 0
+offset_left = 894.0
+offset_top = 42.0
+offset_right = 1137.0
+offset_bottom = 82.0
+text = "Moves player can still do: "
+fit_content = true
+autowrap_mode = 0
+
+[node name="Quit" type="Button" parent="Move"]
+custom_minimum_size = Vector2(150, 90)
+layout_mode = 0
+offset_left = 21.0
+offset_top = 19.0
+offset_right = 171.0
+offset_bottom = 109.0
+text = "Quit"
+
+[node name="Placings" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RestingPlacings" type="RichTextLabel" parent="Placings"]
+layout_mode = 0
+offset_left = 868.0
+offset_top = 18.0
+offset_right = 1111.0
+offset_bottom = 58.0
+text = "Resting players to be placed: 10"
+fit_content = true
+autowrap_mode = 0
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="Select/Quit" to="." method="_on_select_quit_button_pressed"]
+[connection signal="pressed" from="Select/Move" to="." method="_on_select_move_button_pressed"]
+[connection signal="pressed" from="Move/Quit" to="." method="_on_move_quit_button_pressed"]

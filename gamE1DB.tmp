@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://ct23rskwtw0p7"]
+
+[ext_resource type="PackedScene" uid="uid://do8uvvk4fqdh6" path="res://Player.tscn" id="2_6peqh"]
+[ext_resource type="Texture2D" uid="uid://dbumojj861iok" path="res://FieldTexture.jpg" id="2_rbkn6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_462js"]
+size = Vector3(100, 0.1, 60)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vhou8"]
+albedo_texture = ExtResource("2_rbkn6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_inbjw"]
+albedo_color = Color(0, 1, 0, 1)
+
+[node name="Game" type="Node3D"]
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 2.46291e-05, -0.0004025, 0.000340644, 0.482583, 0.87585, 0.000215811, -0.87585, 0.482583, 12.0576, 36.5067, 14.239)
+light_energy = 3.0
+sky_mode = 1
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000274658, 1.52588e-05, -0.269379)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_462js")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D"]
+material_override = SubResource("StandardMaterial3D_vhou8")
+size = Vector3(100, 0.1, 60)
+material = SubResource("StandardMaterial3D_inbjw")
+
+[node name="UpperCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.214036, 0.976826, 0, -0.976826, 0.214036, 0, 42.6709, 11.2711)
+
+[node name="Node3D" parent="." instance=ExtResource("2_6peqh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.70817, 0)

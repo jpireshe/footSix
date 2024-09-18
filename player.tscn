@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://do8uvvk4fqdh6"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_7saci"]
+[ext_resource type="Texture2D" uid="uid://c7pqevxbr6jnw" path="res://icon.svg" id="2_nd4hx"]
+[ext_resource type="Script" path="res://move_area.gd" id="3_rrwqy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2cgn"]
+height = 1.8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xqmck"]
+albedo_color = Color(1, 0, 1, 1)
+albedo_texture = ExtResource("2_nd4hx")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_5dqgh"]
+height = 0.01
+radius = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_io7if"]
+transparency = 1
+blend_mode = 2
+albedo_color = Color(0.152941, 0.152941, 0.152941, 0.513726)
+
+[node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("PlayerCamera")]
+script = ExtResource("1_7saci")
+PlayerCamera = NodePath("PlayerCamera")
+
+[node name="BodyCollision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.01039, 0)
+shape = SubResource("CapsuleShape3D_h2cgn")
+
+[node name="Body" type="CSGSphere3D" parent="."]
+transform = Transform3D(1.04777, 0, 0, 0, 1.81279, 0, 0, 0, 1.06714, 0, 0.905, 0)
+rings = 12
+material = SubResource("StandardMaterial3D_xqmck")
+
+[node name="PlayerCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.805701, 0.592323, 0, -0.592323, 0.805701, 0, 5.89372, 6.94835)
+
+[node name="MoveArea" type="Area3D" parent="."]
+visible = false
+script = ExtResource("3_rrwqy")
+
+[node name="Collision" type="CollisionShape3D" parent="MoveArea"]
+shape = SubResource("CylinderShape3D_5dqgh")
+
+[node name="Circle" type="CSGCylinder3D" parent="MoveArea"]
+radius = 2.0
+height = 0.01
+sides = 40
+material = SubResource("StandardMaterial3D_io7if")
